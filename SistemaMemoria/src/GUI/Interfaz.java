@@ -5,17 +5,19 @@
  */
 package GUI;
 
+import sistemamemoria.SistemaMemoria; 
 /**
  *
  * @author Luciano Pinedo
  */
 public class Interfaz extends javax.swing.JFrame {
-
+public static SistemaMemoria app; 
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
         initComponents();
+        app = new SistemaMemoria(); 
     }
 
     /**
@@ -46,11 +48,22 @@ public class Interfaz extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-       Inicio inicio = new Inicio(); 
-        Interfaz interfaz = new Interfaz();
+    public static void main(String args[]) throws InterruptedException {
+       Inicio inicio = new Inicio();  
+       Interfaz interfaz = new Interfaz(); 
+       inicio.setVisible(true);
+       while (!inicio.isIniciado()) {
+       Thread.sleep(200); 
+         
         
-        
+       }
+       
+        inicio.setVisible(false); 
+        interfaz.setVisible(true); 
+        app.iniciar(inicio.enviarInicial()); 
+       
+       
+  
         
         
         

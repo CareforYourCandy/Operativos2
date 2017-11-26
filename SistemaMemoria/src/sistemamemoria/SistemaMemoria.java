@@ -11,6 +11,9 @@ package sistemamemoria;
  */
 public class SistemaMemoria {
 
+    public SistemaMemoria() {
+    }
+
     
     
     
@@ -18,5 +21,8 @@ public class SistemaMemoria {
      * @param args the command line arguments
      */
   
-    
+    public void iniciar (int memoriaSize) {
+        MemoriaPrincipal mem = new MemoriaPrincipal(memoriaSize);
+        System.out.println(mem.getTamaño());
+    }
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class MemoriaPrincipal {
     
-    int tamaño; 
+    
     Pagina[] memoriaPrincipal;
     List<Proceso> principalProcesos = new ArrayList<Proceso>();
     
@@ -37,8 +37,14 @@ public class MemoriaPrincipal {
             principalProcesos.add(proceso); 
         }
     }
+
+    public MemoriaPrincipal(int size) {
+        this.memoriaPrincipal = new Pagina[size]; 
+    }
     
-    
+    public int getTamaño() {
+        return memoriaPrincipal.length; 
+    }
     
     
 }
