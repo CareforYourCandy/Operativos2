@@ -4,15 +4,14 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import static GUI.Interfaz.app; 
 /**
  *
  * @author Luciano Pinedo
  */
 public class procesoNuevo extends javax.swing.JFrame {
-    boolean creado = false;
-    boolean secuencial = false;
-    int numPag; 
+
+    
     /**
      * Creates new form procesoNuevo
      */
@@ -20,25 +19,7 @@ public class procesoNuevo extends javax.swing.JFrame {
         initComponents();
     }
 
-    public boolean isCreado() {
-        return creado;
-    }
-
-    public boolean isSecuencial() {
-        return secuencial;
-    }
-
-    public int getNumPag() {
-        return numPag;
-    }
-
-    public void setCreado(boolean creado) {
-        this.creado = creado;
-    }
-
-    public void setSecuencial(boolean secuencial) {
-        this.secuencial = secuencial;
-    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,8 +45,6 @@ public class procesoNuevo extends javax.swing.JFrame {
 
         jLabel2.setText("Número de páginas: ");
 
-        jTextField1.setText("jTextField1");
-
         jButton1.setText("Secuencial");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,8 +65,8 @@ public class procesoNuevo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -112,10 +91,9 @@ public class procesoNuevo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Integer.parseInt(jTextField1.getText()); 
-       secuencial = true; 
-       creado = true; 
-       this.setVisible(false); 
+      
+       app.crearProcesoSecuencial(Integer.parseInt(jTextField1.getText()));  
+       this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
