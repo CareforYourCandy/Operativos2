@@ -11,7 +11,11 @@ package sistemamemoria;
  */
 public class SistemaMemoria {
 
+    
+    int numProcesos = 0; 
+    
     public SistemaMemoria() {
+        
     }
 
     
@@ -24,5 +28,13 @@ public class SistemaMemoria {
     public void iniciar (int memoriaSize) {
         MemoriaPrincipal mem = new MemoriaPrincipal(memoriaSize);
         System.out.println(mem.getTamaño());
+    }
+    
+    public void crearProcesoSecuencial(int numpag) {
+        Proceso proce = new Proceso (numProcesos);
+        proce.ejecucionSecuencial(numpag);
+        System.out.println("Se creo el proceso:" + numProcesos );
+        numProcesos++; 
+
     }
 }

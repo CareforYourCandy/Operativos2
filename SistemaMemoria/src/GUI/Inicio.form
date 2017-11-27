@@ -23,16 +23,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="72" max="32767" attributes="0"/>
-              <Component id="Marcos" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="Submit" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="Submit" max="32767" attributes="0"/>
+                  <Component id="Marcos" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -58,9 +56,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Marcos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Marcos"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Submit">
       <Properties>
