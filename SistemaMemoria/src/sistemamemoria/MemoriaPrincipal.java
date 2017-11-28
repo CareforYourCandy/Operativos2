@@ -45,6 +45,14 @@ public class MemoriaPrincipal {
     public int getTamaño() {
         return memoriaPrincipal.length; 
     }
+
+    public List<Proceso> getPrincipalProcesos() {
+        return principalProcesos;
+    }
+
+    public Pagina[] getMemoriaPrincipal() {
+        return memoriaPrincipal;
+    }
     
     
 }

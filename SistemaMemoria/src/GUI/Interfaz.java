@@ -6,14 +6,20 @@
 package GUI;
 
 import sistemamemoria.SistemaMemoria; 
+import javax.swing.table.DefaultTableModel; 
+import javax.swing.DefaultListModel; 
+import java.util.List;
+
 /**
  *
  * @author Luciano Pinedo
  */
 public class Interfaz extends javax.swing.JFrame {
 public static SistemaMemoria app; 
+public static  Interfaz interfaz = new Interfaz(); 
 procesoNuevo procesonuevo = new procesoNuevo();
 ordenEjecucion ordenejecucion = new ordenEjecucion();
+ DefaultListModel modelo; 
     /**
      * Creates new form Interfaz
      */
@@ -39,6 +45,11 @@ ordenEjecucion ordenejecucion = new ordenEjecucion();
         jButton3 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jLabel1.setText("Agregar proceso: ");
 
@@ -90,21 +101,60 @@ ordenEjecucion ordenejecucion = new ordenEjecucion();
             }
         });
 
+        jLabel2.setText("Memoria Principal");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Marco", "Proceso", "Pagina"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable2);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Memoria Virtual"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(245, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(312, 312, 312)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButton1)
-                .addContainerGap(249, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -125,13 +175,20 @@ ordenEjecucion ordenejecucion = new ordenEjecucion();
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public  void actualizarLista() {
+      DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel(); 
+      int ultimo = app.getMemoriaVirtual().getProcesosVirtual().size() - 1;
+      
+            if (ultimo != -1) {
+            int numero = app.getMemoriaVirtual().getProcesosVirtual().get(ultimo).getNumeroProceso();
+            model.addRow(new Object[] { "Proceso " + Integer.toString(numero)});
+            }
+    }
+    
     public static void main(String args[]) throws InterruptedException {
        Inicio inicio = new Inicio();  
-       Interfaz interfaz = new Interfaz(); 
-       
+     
+      
        inicio.setVisible(true);
        while (!inicio.isIniciado()) {
        Thread.sleep(200); 
@@ -143,7 +200,7 @@ ordenEjecucion ordenejecucion = new ordenEjecucion();
         interfaz.setVisible(true); 
         app.iniciar(inicio.enviarInicial()); 
         
-        
+      
        
        
   
@@ -165,6 +222,11 @@ ordenEjecucion ordenejecucion = new ordenEjecucion();
     private javax.swing.JButton jButton3;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

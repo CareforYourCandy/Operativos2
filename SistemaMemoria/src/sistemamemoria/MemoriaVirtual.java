@@ -39,5 +39,19 @@ public class MemoriaVirtual {
         memoriaVirtual.add(pag); 
     }
     
+    public void insertarProceso(Proceso pro) {
+        procesosVirtual.add(pro); 
+        System.out.println("Se inserto un proceso");
+        System.out.println(procesosVirtual.size());
+    }
+
+    public List<Pagina> getMemoriaVirtual() {
+        return memoriaVirtual;
+    }
+
+    public List<Proceso> getProcesosVirtual() {
+        return procesosVirtual;
+    }
+    
     
 }

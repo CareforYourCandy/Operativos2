@@ -64,6 +64,14 @@ public class Proceso {
     public int getNumeroProceso() {
         return numeroProceso;
     }
+
+    public List<Pagina> getOrdenEjecucion() {
+        return ordenEjecucion;
+    }
+
+    public Pagina[] getTotalPaginas() {
+        return totalPaginas;
+    }
         
     
     

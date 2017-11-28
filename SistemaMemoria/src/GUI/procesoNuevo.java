@@ -5,6 +5,8 @@
  */
 package GUI;
 import static GUI.Interfaz.app; 
+import static GUI.Interfaz.interfaz; 
+
 /**
  *
  * @author Luciano Pinedo
@@ -94,6 +96,7 @@ public class procesoNuevo extends javax.swing.JFrame {
       
        app.crearProcesoSecuencial(Integer.parseInt(jTextField1.getText()));  
        this.setVisible(false);
+       interfaz.actualizarLista(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
