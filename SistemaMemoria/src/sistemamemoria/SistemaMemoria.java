@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package sistemamemoria;
-
+import java.util.ArrayList; 
 /**
  *
  * @author Luciano Pinedo
@@ -15,6 +15,7 @@ public class SistemaMemoria {
     int numProcesos = 0; 
     MemoriaPrincipal mem;
     MemoriaVirtual memv; 
+    ArrayList<Proceso> allProcesos = new ArrayList<>(); 
     public SistemaMemoria() {
         
     }
@@ -49,6 +50,7 @@ public class SistemaMemoria {
         proce.ejecucionSecuencial(numpag);
         System.out.println("Se creo el proceso:" + numProcesos );
         numProcesos++; 
+        allProcesos.add(proce); 
         memv.insertarProceso(proce);
         
         Pagina[] totalPags =  proce.getTotalPaginas();
@@ -60,26 +62,19 @@ public class SistemaMemoria {
         
     }
     
-    public void ejecutarPagProcesoPrincipal (Proceso procesoEjecutar) {
-        
-        for (int i = 0; i < mem.getTamaño(); i++) {
-            if (mem.getMemoriaPrincipal()[i] == procesoEjecutar.getOrdenEjecucion().get(0)) {
-                procesoEjecutar.getOrdenEjecucion().remove(0); 
-                i = mem.getTamaño(); 
-             
+    public Proceso buscarProceso(int idProceso) {
+        for (int i = 0; i < allProcesos.size(); i++) {
+            if (allProcesos.get(i).getNumeroProceso() == idProceso) {
+                return allProcesos.get(i); 
             }
         }
+        return null; 
     }
     
-        public void ejecutarPagProcesoVirtual(Proceso procesoEjecutar) {
-             for (int j = 0; j <  memv.getMemoriaVirtual().size(); j++ ) {
-                if (memv.getMemoriaVirtual().get(j) == procesoEjecutar.getOrdenEjecucion().get(0)) {
-                    introducirPagPrincipal(memv.getMemoriaVirtual().get(j));
-                    ejecutarPagProcesoPrincipal(procesoEjecutar);
-                    j = memv.getMemoriaVirtual().size(); 
-                }
-            }
-        }
+    public void ejecutarProceso(Proceso proceso) {
+        
+        
+    }
        
         public void introducirPagPrincipal(Pagina pag) {
             
@@ -132,6 +127,13 @@ public class SistemaMemoria {
                 memv.insertarPagina(proceso.getTotalPaginas()[i]);
             }
             numProcesos++; 
+            allProcesos.add(proceso); 
             
         }
+
+    public ArrayList<Proceso> getAllProcesos() {
+        return allProcesos;
+    }
+        
+        
 }

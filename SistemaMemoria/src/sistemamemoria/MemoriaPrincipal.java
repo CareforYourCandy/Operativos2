@@ -15,7 +15,7 @@ public class MemoriaPrincipal {
     
     
     Pagina[] memoriaPrincipal;
-    List<Proceso> principalProcesos = new ArrayList<Proceso>();
+
     
     public void insertarPaginaPrincipal(Pagina pag) {
         
@@ -27,16 +27,11 @@ public class MemoriaPrincipal {
             
         }
         
-        insertarProcesoPrincipal(pag.getProcesoPadre()); 
+        
         
     }
     
-    public void insertarProcesoPrincipal(Proceso proceso) {
-        
-        if (principalProcesos.contains(proceso) == false) {
-            principalProcesos.add(proceso); 
-        }
-    }
+    
 
     public MemoriaPrincipal(int size) {
         this.memoriaPrincipal = new Pagina[size]; 
@@ -46,9 +41,7 @@ public class MemoriaPrincipal {
         return memoriaPrincipal.length; 
     }
 
-    public List<Proceso> getPrincipalProcesos() {
-        return principalProcesos;
-    }
+   
 
     public Pagina[] getMemoriaPrincipal() {
         return memoriaPrincipal;

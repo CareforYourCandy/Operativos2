@@ -102,7 +102,7 @@ public class procesoNuevo extends javax.swing.JFrame {
       
        app.crearProcesoSecuencial(Integer.parseInt(jTextField1.getText()));  
        this.setVisible(false);
-       interfaz.actualizarLista(); 
+       interfaz.actualizarTodo(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton3ActionPerformed

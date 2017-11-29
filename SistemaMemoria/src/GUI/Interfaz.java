@@ -8,6 +8,8 @@ package GUI;
 import sistemamemoria.SistemaMemoria; 
 import javax.swing.table.DefaultTableModel; 
 import javax.swing.DefaultListModel; 
+import javax.swing.DefaultComboBoxModel; 
+
 import java.util.List;
 
 /**
@@ -20,7 +22,7 @@ public static  Interfaz interfaz = new Interfaz();
 procesoNuevo procesonuevo = new procesoNuevo();
 public static ordenEjecucion ordenejecucion = new ordenEjecucion();
 
- DefaultListModel modelo; 
+
     /**
      * Creates new form Interfaz
      */
@@ -53,6 +55,8 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Agregar proceso: ");
 
@@ -131,16 +135,25 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Proceso", "Número de Páginas", "Páginas Principal", "Páginas Virtual", "Estado"
             }
         ));
         jScrollPane2.setViewportView(jTable3);
+
+        jLabel3.setText("Proceso a Ejecutar");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -148,18 +161,23 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(312, 312, 312)
-                            .addComponent(jButton1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,11 +188,18 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                     .addComponent(jButton1))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -195,6 +220,15 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+         String proceso = (String) jComboBox1.getSelectedItem(); 
+        String[] division = proceso.split(":"); 
+        int numeroProceso = Integer.parseInt(division[1].trim()); 
+        app.ejecutarProceso(app.buscarProceso(numeroProceso));
+        
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     public  void actualizarLista() {
       DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel(); 
       int ultimo = app.getMemoriaVirtual().getProcesosVirtual().size() - 1;
@@ -203,6 +237,23 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             int numero = app.getMemoriaVirtual().getProcesosVirtual().get(ultimo).getNumeroProceso();
             model.addRow(new Object[] { "Proceso " + Integer.toString(numero)});
             }
+    }
+    
+    public void actualizarComboBox() {
+        
+        DefaultComboBoxModel comboBoxDinamico = new DefaultComboBoxModel(); 
+        for (int i = 0; i < app.getAllProcesos().size(); i++) {
+            String labelProceso = "Proceso: " + app.getAllProcesos().get(i).getNumeroProceso(); 
+            comboBoxDinamico.addElement(labelProceso);
+        }
+        jComboBox1.setModel(comboBoxDinamico);
+        
+    }
+    
+    public void actualizarTodo() {
+        
+        actualizarLista();  
+        actualizarComboBox(); 
     }
     
     public static void main(String args[]) throws InterruptedException {
@@ -240,9 +291,11 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

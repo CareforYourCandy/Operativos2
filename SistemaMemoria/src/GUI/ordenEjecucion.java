@@ -138,7 +138,8 @@ public class ordenEjecucion extends javax.swing.JFrame {
        app.guardarProcesoEspecifico(procesoCreado);
        
        this.setVisible(false);
-        interfaz.actualizarLista();// TODO add your handling code here:
+       
+        interfaz.actualizarTodo();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     public void definirCuadro(Proceso procesoBase) {
