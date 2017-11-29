@@ -97,4 +97,17 @@ public class SistemaMemoria {
             
         
     }
+        public Proceso iniciarProcesoEspecifico(int numeroPags) {
+            Proceso procesoNuevo = new Proceso(numProcesos);
+            procesoNuevo.ejecucionRamificada(numeroPags);
+            return procesoNuevo; 
+        }
+        
+        public void agregarEjecucionEspecifica(int numero, Proceso proceso) {
+            
+        }
+        
+        public void removerEjecucionEspecifica(int numero, Proceso proceso) {
+            
+        }
 }

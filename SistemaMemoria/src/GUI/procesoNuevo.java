@@ -6,6 +6,7 @@
 package GUI;
 import static GUI.Interfaz.app; 
 import static GUI.Interfaz.interfaz; 
+import static GUI.Interfaz.ordenejecucion; 
 
 /**
  *
@@ -55,6 +56,11 @@ public class procesoNuevo extends javax.swing.JFrame {
         });
 
         JButton3.setText("Específica");
+        JButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +104,12 @@ public class procesoNuevo extends javax.swing.JFrame {
        this.setVisible(false);
        interfaz.actualizarLista(); 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void JButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton3ActionPerformed
+        ordenejecucion.definirCuadro(app.iniciarProcesoEspecifico(Integer.parseInt(jTextField1.getText())));
+        this.setVisible(false); 
+        ordenejecucion.setVisible(true); 
+    }//GEN-LAST:event_JButton3ActionPerformed
 
     /**
      * @param args the command line arguments

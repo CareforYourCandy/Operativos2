@@ -18,14 +18,15 @@ public class Interfaz extends javax.swing.JFrame {
 public static SistemaMemoria app; 
 public static  Interfaz interfaz = new Interfaz(); 
 procesoNuevo procesonuevo = new procesoNuevo();
-ordenEjecucion ordenejecucion = new ordenEjecucion();
+public static ordenEjecucion ordenejecucion = new ordenEjecucion();
+
  DefaultListModel modelo; 
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
         
-        ordenejecucion.setDefaultCloseOperation(ordenejecucion.DISPOSE_ON_CLOSE);
+        
         initComponents();
         app = new SistemaMemoria(); 
     }

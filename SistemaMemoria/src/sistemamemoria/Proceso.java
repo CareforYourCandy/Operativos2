@@ -42,7 +42,7 @@ public class Proceso {
     }    
     }
     
-    public void ejecucionRamificada (int[] ordenEjecucion, int totalPag) {
+    public void ejecucionRamificada ( int totalPag) {
         this.totalPaginas = new Pagina[totalPag]; 
         
         for (int i = 0; i < totalPag; i++) {
@@ -51,12 +51,7 @@ public class Proceso {
                    
         }
         
-        for (int i = 0; i < ordenEjecucion.length; i++) {
-            int numPag = ordenEjecucion[i]; 
-            insertarPaginaEjecucion(this.totalPaginas[numPag]); 
-            
-            
-        }
+       
         
         
     } 
