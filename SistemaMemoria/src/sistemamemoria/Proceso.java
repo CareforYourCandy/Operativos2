@@ -28,6 +28,17 @@ public class Proceso {
          
     }
     
+    public void añadirEjecucion(int numeroPag) {
+        
+        insertarPaginaEjecucion(totalPaginas[numeroPag]); 
+    }
+    
+    public void eliminarEjecucion() {
+        
+        ordenEjecucion.remove(ordenEjecucion.get(ordenEjecucion.size() - 1)); 
+        
+    }
+    
     public void ejecucionSecuencial (int totalPaginas) {
         this.totalPaginas = new Pagina[totalPaginas]; 
         
@@ -68,7 +79,14 @@ public class Proceso {
         return totalPaginas;
     }
         
-    
+    public void imprimirOrden() {
+       for (int i = 0; i < ordenEjecucion.size(); i++) {
+           System.out.println(" " + ordenEjecucion.get(i).getNumeroPagina() + " ");
+           
+       } 
+        
+        
+    }
     
     
         

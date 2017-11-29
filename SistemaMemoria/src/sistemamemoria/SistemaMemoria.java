@@ -104,10 +104,20 @@ public class SistemaMemoria {
         }
         
         public void agregarEjecucionEspecifica(int numero, Proceso proceso) {
-            
+            proceso.añadirEjecucion(numero); 
         }
         
-        public void removerEjecucionEspecifica(int numero, Proceso proceso) {
+        public void removerEjecucionEspecifica(Proceso proceso) {
+            proceso.eliminarEjecucion();
+        }
+        
+        public void guardarProcesoEspecifico(Proceso proceso) {
+            memv.insertarProceso(proceso);
+            proceso.imprimirOrden();
+            for (int i = 0; i < proceso.getTotalPaginas().length; i++ ) {
+                memv.insertarPagina(proceso.getTotalPaginas()[i]);
+            }
+            numProcesos++; 
             
         }
 }
