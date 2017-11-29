@@ -92,7 +92,21 @@ public class SistemaMemoria {
                 }
             }
             if (!introducido) {
-                //Super algoritmo 
+                Pagina menosUsada = mem.getMemoriaPrincipal()[0]; 
+                int numeroUsos = mem.getMemoriaPrincipal()[0].getProcesoPadre().numeroUsos(menosUsada);
+                int posicion = 0; 
+                for (int j = 0; j < mem.getTamaño(); j++) {
+                    Pagina paginaActual = mem.getMemoriaPrincipal()[j]; 
+                    int numeroActual = paginaActual.getProcesoPadre().numeroUsos(paginaActual);
+                    
+                    if (numeroActual < numeroUsos) {
+                        menosUsada = paginaActual; 
+                        numeroUsos = numeroActual; 
+                        posicion = j; 
+                    }
+                }
+                memv.insertarPagina(menosUsada);
+                mem.getMemoriaPrincipal()[posicion] = pag; 
             }
             
         

@@ -85,10 +85,18 @@ public class Proceso {
            
        } 
         
-        
+    
     }
     
-    
+    public int numeroUsos(Pagina pagina) {
+        int vecesUsada = 0; 
+        for (int i = 0; i < ordenEjecucion.size() ; i++) {
+            if (ordenEjecucion.get(i) == pagina) {
+                vecesUsada++; 
+            }
+        }
+        return vecesUsada; 
+    }    
         
     
     
