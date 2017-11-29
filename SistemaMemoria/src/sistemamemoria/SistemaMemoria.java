@@ -12,10 +12,10 @@ import java.util.ArrayList;
 public class SistemaMemoria {
 
     
-    int numProcesos = 0; 
-    MemoriaPrincipal mem;
-    MemoriaVirtual memv; 
-    ArrayList<Proceso> allProcesos = new ArrayList<>(); 
+    private int numProcesos = 0; 
+    private MemoriaPrincipal mem;
+    private MemoriaVirtual memv; 
+    private ArrayList<Proceso> allProcesos = new ArrayList<>(); 
     public SistemaMemoria() {
         
     }
@@ -71,11 +71,37 @@ public class SistemaMemoria {
         return null; 
     }
     
+   
     public void ejecutarProceso(Proceso proceso) {
+        Pagina paginaEjecutar = proceso.getOrdenEjecucion().get(0); 
+        if (mem.estaPagina(paginaEjecutar)) {
+            proceso.getOrdenEjecucion().remove(0);
+            
+        } 
+        else {
+            System.out.println("La pagina no esta en memoria principal");
+            mem.introducirPagPrincipal(paginaEjecutar);
+            proceso.getOrdenEjecucion().remove(0);
+        }
+    
+    }
+    
+    public boolean revisarFinal(Proceso proceso)  {
+        if (proceso.getOrdenEjecucion().isEmpty()) {
+            return true; 
+        }
+        return false; 
+        
+    }
+    public void finalizarProceso(Proceso proceso) throws InterruptedException  {
+        System.out.println("El proceso ha finalizado su ejecución");
+        Thread.sleep(2000);
+        allProcesos.remove(proceso); 
+        mem.removerProceso(proceso); 
         
         
     }
-       
+      /*   
         public void introducirPagPrincipal(Pagina pag) {
             
             boolean introducido = false; 
@@ -106,6 +132,8 @@ public class SistemaMemoria {
             
         
     }
+        */
+      
         public Proceso iniciarProcesoEspecifico(int numeroPags) {
             Proceso procesoNuevo = new Proceso(numProcesos);
             procesoNuevo.ejecucionRamificada(numeroPags);

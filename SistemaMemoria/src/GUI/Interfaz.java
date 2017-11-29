@@ -11,6 +11,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel; 
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +21,8 @@ import java.util.List;
 public class Interfaz extends javax.swing.JFrame {
 public static SistemaMemoria app; 
 public static  Interfaz interfaz = new Interfaz(); 
-procesoNuevo procesonuevo = new procesoNuevo();
+private procesoNuevo procesonuevo = new procesoNuevo();
+private DefaultTableModel modeloOriginal; 
 public static ordenEjecucion ordenejecucion = new ordenEjecucion();
 
 
@@ -112,10 +115,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Marco", "Proceso", "Pagina"
@@ -225,8 +225,23 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         String[] division = proceso.split(":"); 
         int numeroProceso = Integer.parseInt(division[1].trim()); 
         app.ejecutarProceso(app.buscarProceso(numeroProceso));
-        
-        
+        for (int i = 0; i < app.getMemoriaPrincipal().getTamaño(); i++) {
+            if (app.getMemoriaPrincipal().getMemoriaPrincipal()[i] != null) {
+            System.out.println("[" + app.getMemoriaPrincipal().getMemoriaPrincipal()[i].getNumeroPagina() + "]");
+            }
+            
+        }
+        actualizarMemoriaPrincipal(); 
+        if (app.revisarFinal(app.buscarProceso(numeroProceso))) {
+             try {
+                 app.finalizarProceso(app.buscarProceso(numeroProceso));
+             } catch (InterruptedException ex) {
+                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            removerMemoriaPrincipal(numeroProceso); 
+            
+        };
+    
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public  void actualizarLista() {
@@ -239,6 +254,31 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             }
     }
     
+    public void actualizarMemoriaPrincipal() {
+        
+        DefaultTableModel memoriaTablaDinamica = modeloOriginal; 
+        for (int i = 0; i < app.getMemoriaPrincipal().getTamaño();  i++) {
+            if (app.getMemoriaPrincipal().getMemoriaPrincipal()[i] != null) {
+            String proceso = "Proceso " + app.getMemoriaPrincipal().getMemoriaPrincipal()[i].getProcesoPadre().getNumeroProceso();
+            String pagina  = "Pagina "  + app.getMemoriaPrincipal().getMemoriaPrincipal()[i].getNumeroPagina(); 
+            memoriaTablaDinamica.setValueAt(proceso, i, 1); 
+            memoriaTablaDinamica.setValueAt(pagina, i , 2); 
+        }
+        }
+        
+        jTable2.setModel(memoriaTablaDinamica); 
+    }
+    
+    public void removerMemoriaPrincipal(int numProceso) {
+        DefaultTableModel memoriaTablaDinamica = modeloOriginal; 
+        String proceso = "Proceso " + numProceso;
+        for (int i = 0; i < app.getMemoriaPrincipal().getTamaño(); i++) {
+        if (modeloOriginal.getValueAt(i, 1).equals(proceso)) {
+            modeloOriginal.setValueAt("",i ,1);
+            modeloOriginal.setValueAt("", i, 2); 
+        }
+            }
+    }
     public void actualizarComboBox() {
         
         DefaultComboBoxModel comboBoxDinamico = new DefaultComboBoxModel(); 
@@ -254,6 +294,19 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         
         actualizarLista();  
         actualizarComboBox(); 
+        actualizarMemoriaPrincipal(); 
+    }
+    
+    public void iniciar() {
+        
+         modeloOriginal = (DefaultTableModel) jTable2.getModel(); 
+         for (int i = 0; i < app.getMemoriaPrincipal().getTamaño(); i++) {
+  
+           
+                modeloOriginal.addRow(new Object[] {Integer.toString(i), "", ""}
+                        
+                );
+        }
     }
     
     public static void main(String args[]) throws InterruptedException {
@@ -268,9 +321,10 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
        }
        
         inicio.setVisible(false); 
-        interfaz.setVisible(true); 
-        app.iniciar(inicio.enviarInicial()); 
+        interfaz.setVisible(true);
         
+        app.iniciar(inicio.enviarInicial()); 
+        interfaz.iniciar(); 
       
        
        

@@ -14,25 +14,65 @@ import java.util.ArrayList;
 public class MemoriaPrincipal {
     
     
-    Pagina[] memoriaPrincipal;
+    private Pagina[] memoriaPrincipal;
 
     
-    public void insertarPaginaPrincipal(Pagina pag) {
-        
-        for (int i = 0; i < memoriaPrincipal.length; i++) {
-            if (memoriaPrincipal[i] == null) {
-                memoriaPrincipal[i] = pag;
-                i = memoriaPrincipal.length; 
-            }
+    public boolean estaPagina(Pagina pag) {
+        for ( int i = 0; i < memoriaPrincipal.length; i++) {
             
+            if (memoriaPrincipal[i] != null) {
+                if (memoriaPrincipal[i] == pag) {
+                    return true; 
+                }
+            }
         }
-        
-        
+     
+        return false; 
         
     }
     
+    public void introducirPagPrincipal(Pagina pag) {
+            
+            boolean introducido = false; 
+            
+            for (int i = 0; i < memoriaPrincipal.length; i++) {
+                if (memoriaPrincipal[i] == null) {
+                    memoriaPrincipal[i] = pag; 
+                    introducido = true;
+                    i = memoriaPrincipal.length; 
+                }
+            }
+            if (!introducido) {
+                Pagina menosUsada = memoriaPrincipal[0]; 
+                int numeroUsos = memoriaPrincipal[0].getProcesoPadre().numeroUsos(menosUsada);
+                int posicion = 0; 
+                for (int j = 0; j < memoriaPrincipal.length; j++) {
+                    Pagina paginaActual = memoriaPrincipal[j]; 
+                    int numeroActual = paginaActual.getProcesoPadre().numeroUsos(paginaActual);
+                    
+                    if (numeroActual < numeroUsos) {
+                        menosUsada = paginaActual; 
+                        numeroUsos = numeroActual; 
+                        posicion = j; 
+                    }
+                }
+                
+                memoriaPrincipal[posicion] = pag; 
+            }
+            
+        
+    }
     
-
+    public void removerProceso(Proceso proceso) {
+        for ( int i = 0; i < memoriaPrincipal.length; i++) {
+            if (memoriaPrincipal[i] != null){
+            if (memoriaPrincipal[i].getProcesoPadre() == proceso) {
+                memoriaPrincipal[i] = null; 
+            }
+            }
+            
+        }
+    }
     public MemoriaPrincipal(int size) {
         this.memoriaPrincipal = new Pagina[size]; 
     }

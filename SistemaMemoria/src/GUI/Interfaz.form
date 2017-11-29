@@ -167,7 +167,7 @@
         <Component class="javax.swing.JTable" name="jTable2">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="4">
+              <Table columnCount="3" rowCount="0">
                 <Column editable="true" title="Marco" type="java.lang.Object"/>
                 <Column editable="true" title="Proceso" type="java.lang.Object"/>
                 <Column editable="true" title="Pagina" type="java.lang.Object"/>
