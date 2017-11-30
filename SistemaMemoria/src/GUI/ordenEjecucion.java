@@ -136,7 +136,7 @@ public class ordenEjecucion extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        app.guardarProcesoEspecifico(procesoCreado);
-       
+       interfaz.añadirTablaProcesos(procesoCreado);
        this.setVisible(false);
        
         interfaz.actualizarTodo();// TODO add your handling code here:

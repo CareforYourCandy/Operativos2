@@ -4,13 +4,12 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import sistemamemoria.Proceso; 
 import sistemamemoria.SistemaMemoria; 
+
 import javax.swing.table.DefaultTableModel; 
 import javax.swing.DefaultListModel; 
 import javax.swing.DefaultComboBoxModel; 
-
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -135,10 +134,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Proceso", "Número de Páginas", "Páginas Principal", "Páginas Virtual", "Estado"
@@ -160,23 +156,22 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -221,37 +216,45 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-         String proceso = (String) jComboBox1.getSelectedItem(); 
+         String proceso = (String) jComboBox1.getSelectedItem();
         String[] division = proceso.split(":"); 
         int numeroProceso = Integer.parseInt(division[1].trim()); 
-        app.ejecutarProceso(app.buscarProceso(numeroProceso));
-        for (int i = 0; i < app.getMemoriaPrincipal().getTamaño(); i++) {
-            if (app.getMemoriaPrincipal().getMemoriaPrincipal()[i] != null) {
-            System.out.println("[" + app.getMemoriaPrincipal().getMemoriaPrincipal()[i].getNumeroPagina() + "]");
-            }
+         Proceso proceso2 = app.buscarProceso(numeroProceso); 
+         
+        app.ejecutarProceso(proceso2);
+        
+       
             
-        }
+        
         actualizarMemoriaPrincipal(); 
-        if (app.revisarFinal(app.buscarProceso(numeroProceso))) {
+       
+        if (app.revisarFinal(proceso2)) {
              try {
-                 app.finalizarProceso(app.buscarProceso(numeroProceso));
+                 app.finalizarProceso(proceso2);
              } catch (InterruptedException ex) {
                  Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
              }
             removerMemoriaPrincipal(numeroProceso); 
             
         };
-    
+        actualizarTablaProcesos(proceso2);
+        actualizarComboBox(); 
+        actualizarLista(); 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public  void actualizarLista() {
-      DefaultTableModel model = (DefaultTableModel) this.jTable1.getModel(); 
-      int ultimo = app.getMemoriaVirtual().getProcesosVirtual().size() - 1;
+      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
       
-            if (ultimo != -1) {
-            int numero = app.getMemoriaVirtual().getProcesosVirtual().get(ultimo).getNumeroProceso();
-            model.addRow(new Object[] { "Proceso " + Integer.toString(numero)});
-            }
+      for (int j = 0; j < model.getRowCount(); j++) {
+      model.removeRow(j);
+      }
+      
+      for (int i = 0; i < app.getAllProcesos().size(); i++) {
+          if (!app.getMemoriaPrincipal().tienePagina(app.getAllProcesos().get(i))) {
+              model.addRow(new Object[] { "Proceso " + app.getAllProcesos().get(i).getNumeroProceso()});
+          }
+      }
+      jTable1.setModel(model);
     }
     
     public void actualizarMemoriaPrincipal() {
@@ -278,6 +281,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             modeloOriginal.setValueAt("", i, 2); 
         }
             }
+        jTable2.setModel(modeloOriginal);
     }
     public void actualizarComboBox() {
         
@@ -285,8 +289,61 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         for (int i = 0; i < app.getAllProcesos().size(); i++) {
             String labelProceso = "Proceso: " + app.getAllProcesos().get(i).getNumeroProceso(); 
             comboBoxDinamico.addElement(labelProceso);
+           
+        }
+        for (int j = 0; j < app.getAllProcesos().size(); j++) {
+             if (app.getAllProcesos().get(j).isFinalizado()) {
+                System.out.println("Esta finalizado");
+                comboBoxDinamico.removeElementAt(app.getAllProcesos().get(j).getNumeroProceso());
+            }
         }
         jComboBox1.setModel(comboBoxDinamico);
+        
+    }
+    
+    public void añadirTablaProcesos(Proceso proceso) {
+        int totalPaginas = proceso.getTotalPaginas().length; 
+        int totalPrincipal = 0;
+        int totalVirtual = totalPaginas; 
+        DefaultTableModel procesosTablaDinamica = (DefaultTableModel) jTable3.getModel();
+        String nombreProceso = Integer.toString(proceso.getNumeroProceso()); 
+        String numPagTotal = Integer.toString(totalPaginas); 
+        String pagPrincipal = Integer.toString(totalPrincipal); 
+        String pagVirtual = Integer.toString(totalVirtual);
+        String Estado = "Nuevo";
+        procesosTablaDinamica.addRow(new Object[] { nombreProceso, numPagTotal, pagPrincipal, pagVirtual, Estado});
+        
+        
+    }
+    
+    public void actualizarTablaProcesos(Proceso proceso) {
+        int totalPaginas = proceso.getTotalPaginas().length; 
+        int totalPrincipal = app.procesoTotalPaginasPrincipal(proceso);
+        int totalVirtual = totalPaginas - totalPrincipal; 
+        DefaultTableModel procesosTablaDinamica = (DefaultTableModel) jTable3.getModel();
+        
+        
+        String pagPrincipal = Integer.toString(totalPrincipal); 
+        String pagVirtual = Integer.toString(totalVirtual);
+        
+        for (int i = 0; i < procesosTablaDinamica.getRowCount();  i++) {
+            
+            if (!procesosTablaDinamica.getValueAt(i, 4).equals("Nuevo") && !procesosTablaDinamica.getValueAt(i, 4).equals("Finalizado")) {
+                 procesosTablaDinamica.setValueAt("Listo", i, 4); 
+            }
+        }
+        
+        procesosTablaDinamica.setValueAt(pagPrincipal, proceso.getNumeroProceso() , 2);
+        procesosTablaDinamica.setValueAt(pagVirtual,proceso.getNumeroProceso() , 3);
+        procesosTablaDinamica.setValueAt("Ejecutando", proceso.getNumeroProceso(), 4); 
+        
+        
+        
+           
+       
+        if (proceso.isFinalizado()) {
+            procesosTablaDinamica.setValueAt("Finalizado", proceso.getNumeroProceso(), 4); 
+        }
         
     }
     
@@ -295,6 +352,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         actualizarLista();  
         actualizarComboBox(); 
         actualizarMemoriaPrincipal(); 
+     
     }
     
     public void iniciar() {

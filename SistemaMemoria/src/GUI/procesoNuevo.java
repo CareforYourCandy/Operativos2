@@ -101,12 +101,15 @@ public class procesoNuevo extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
        app.crearProcesoSecuencial(Integer.parseInt(jTextField1.getText()));  
+       interfaz.añadirTablaProcesos(app.getAllProcesos().get(app.getAllProcesos().size()-1));
+       
        this.setVisible(false);
        interfaz.actualizarTodo(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void JButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton3ActionPerformed
         ordenejecucion.definirCuadro(app.iniciarProcesoEspecifico(Integer.parseInt(jTextField1.getText())));
+        
         this.setVisible(false); 
         ordenejecucion.setVisible(true); 
     }//GEN-LAST:event_JButton3ActionPerformed

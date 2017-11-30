@@ -31,6 +31,17 @@ public class MemoriaPrincipal {
         
     }
     
+    public boolean tienePagina(Proceso proceso) {
+        for (int i = 0; i < memoriaPrincipal.length; i++) {
+            if (memoriaPrincipal[i] != null) {
+                if (memoriaPrincipal[i].getProcesoPadre() == proceso) {
+                    return true; 
+                }
+            }
+        }
+        return false; 
+    }
+    
     public void introducirPagPrincipal(Pagina pag) {
             
             boolean introducido = false; 

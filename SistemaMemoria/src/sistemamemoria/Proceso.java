@@ -17,7 +17,18 @@ public class Proceso {
     List<Pagina> ordenEjecucion = new ArrayList<Pagina>();   
     Pagina[] totalPaginas;
     int numeroProceso; 
+    boolean finalizado = false; 
 
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
+    
+    
+    
     public Proceso(int Numero) {
         this.numeroProceso = Numero;
     }

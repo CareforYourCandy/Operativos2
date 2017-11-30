@@ -76,6 +76,7 @@ public class SistemaMemoria {
         Pagina paginaEjecutar = proceso.getOrdenEjecucion().get(0); 
         if (mem.estaPagina(paginaEjecutar)) {
             proceso.getOrdenEjecucion().remove(0);
+            System.out.println("LA PAGINA ESTA");
             
         } 
         else {
@@ -98,7 +99,7 @@ public class SistemaMemoria {
         Thread.sleep(2000);
         allProcesos.remove(proceso); 
         mem.removerProceso(proceso); 
-        
+        proceso.setFinalizado(true);
         
     }
       /*   
@@ -157,6 +158,20 @@ public class SistemaMemoria {
             numProcesos++; 
             allProcesos.add(proceso); 
             
+        }
+        
+        public int procesoTotalPaginasPrincipal (Proceso proceso) {
+            int cont = 0; 
+            
+            for (int i = 0; i < mem.getTamaño(); i++) {
+                if (mem.getMemoriaPrincipal()[i] != null) {
+                if ( mem.getMemoriaPrincipal()[i].getProcesoPadre() == proceso) {
+                   cont++;  
+                }
+                }
+                
+            }
+            return cont; 
         }
 
     public ArrayList<Proceso> getAllProcesos() {
