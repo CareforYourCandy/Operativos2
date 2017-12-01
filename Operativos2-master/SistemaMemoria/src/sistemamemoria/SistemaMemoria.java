@@ -191,7 +191,7 @@ public class SistemaMemoria {
         
     public void alerta() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         AudioInputStream a = 
-                AudioSystem.getAudioInputStream(new File("src//sistemamemoria//Alerta").getAbsoluteFile());
+                AudioSystem.getAudioInputStream(new File("src//sistemamemoria//Alerta.wav").getAbsoluteFile());
          
         // create clip reference
         Clip clip  = AudioSystem.getClip();
