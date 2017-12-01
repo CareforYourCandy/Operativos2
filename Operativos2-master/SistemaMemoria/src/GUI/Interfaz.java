@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package GUI;
+import java.io.IOException;
 import sistemamemoria.Proceso; 
 import sistemamemoria.SistemaMemoria; 
 
@@ -12,6 +13,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.DefaultComboBoxModel; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 /**
  *
@@ -59,6 +63,8 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         jTable3 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jLabel1.setText("Agregar proceso: ");
 
@@ -151,6 +157,20 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             }
         });
 
+        jButton4.setText("Alerta");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Deseo");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,7 +186,12 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton5)
+                                    .addComponent(jButton4)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)
@@ -194,6 +219,10 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -241,6 +270,22 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         actualizarComboBox(); 
         actualizarLista(); 
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    try { 
+        app.alerta();
+    } catch (UnsupportedAudioFileException ex) {
+        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (LineUnavailableException ex) {
+        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        app.deseo();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     public  void actualizarLista() {
       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -402,6 +447,8 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;

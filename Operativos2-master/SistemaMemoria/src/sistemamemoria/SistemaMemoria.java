@@ -5,10 +5,21 @@
  */
 package sistemamemoria;
 import java.util.ArrayList; 
+import java.io.File;
+import java.io.IOException;
 /**
  *
  * @author Luciano Pinedo
  */
+import java.util.Scanner;
+ 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+
 public class SistemaMemoria {
 
     
@@ -178,5 +189,21 @@ public class SistemaMemoria {
         return allProcesos;
     }
         
+    public void alerta() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        AudioInputStream a = 
+                AudioSystem.getAudioInputStream(new File("src//sistemamemoria//Alerta").getAbsoluteFile());
+         
+        // create clip reference
+        Clip clip  = AudioSystem.getClip();
+         
+        // open audioInputStream to the clip
+        clip.open(a);
+         
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.start(); 
+    }   
+    
+    public void deseo() {
         
+    }
 }
