@@ -284,7 +284,15 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    try {
         app.deseo();         // TODO add your handling code here:
+    } catch (UnsupportedAudioFileException ex) {
+        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (LineUnavailableException ex) {
+        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     public  void actualizarLista() {

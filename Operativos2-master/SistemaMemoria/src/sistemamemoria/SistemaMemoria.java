@@ -203,7 +203,17 @@ public class SistemaMemoria {
         clip.start(); 
     }   
     
-    public void deseo() {
-        
+    public void deseo() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+            AudioInputStream a = 
+                AudioSystem.getAudioInputStream(new File("src//sistemamemoria//Deseo.wav").getAbsoluteFile());
+         
+        // create clip reference
+        Clip clip  = AudioSystem.getClip();
+         
+        // open audioInputStream to the clip
+        clip.open(a);
+         
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        clip.start(); 
     }
 }
