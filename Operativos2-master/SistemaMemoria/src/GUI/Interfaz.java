@@ -321,10 +321,11 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         }
         
         jTable2.setModel(memoriaTablaDinamica); 
+        
     }
     
     public void removerMemoriaPrincipal(int numProceso) {
-        DefaultTableModel memoriaTablaDinamica = modeloOriginal; 
+
         String proceso = "Proceso " + numProceso;
         for (int i = 0; i < app.getMemoriaPrincipal().getTamaño(); i++) {
         if (modeloOriginal.getValueAt(i, 1).equals(proceso)) {

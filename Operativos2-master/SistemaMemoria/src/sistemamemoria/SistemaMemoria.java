@@ -107,7 +107,7 @@ public class SistemaMemoria {
     }
     public void finalizarProceso(Proceso proceso) throws InterruptedException  {
         System.out.println("El proceso ha finalizado su ejecución");
-        Thread.sleep(2000);
+    
         allProcesos.remove(proceso); 
         mem.removerProceso(proceso); 
         proceso.setFinalizado(true);
