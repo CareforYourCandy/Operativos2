@@ -61,7 +61,7 @@ public class MemoriaPrincipal {
                     Pagina paginaActual = memoriaPrincipal[j]; 
                     int numeroActual = paginaActual.getProcesoPadre().numeroUsos(paginaActual);
                     
-                    if (numeroActual < numeroUsos) {
+                    if (numeroActual <= numeroUsos) {
                         menosUsada = paginaActual; 
                         numeroUsos = numeroActual; 
                         posicion = j; 

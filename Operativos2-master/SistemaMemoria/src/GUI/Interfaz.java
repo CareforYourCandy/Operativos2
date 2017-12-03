@@ -65,6 +65,10 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setText("Agregar proceso: ");
 
@@ -171,32 +175,49 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             }
         });
 
+        jLabel4.setText("Memoria Virtual");
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Proceso", "Paginas"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable4);
+
+        jLabel5.setText("Procesos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton5)
-                                    .addComponent(jButton4)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton5))))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -210,20 +231,25 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(34, 34, 34)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4)
+                            .addComponent(jButton5))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -258,17 +284,25 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         actualizarMemoriaPrincipal(); 
        
         if (app.revisarFinal(proceso2)) {
-             try {
+             
+                 
                  app.finalizarProceso(proceso2);
-             } catch (InterruptedException ex) {
-                 Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
-             }
-            removerMemoriaPrincipal(numeroProceso); 
+                 
             
-        };
+            removerMemoriaPrincipal(numeroProceso); 
+            DefaultTableModel a = (DefaultTableModel) jTable4.getModel(); 
+            a.getDataVector().clear(); 
+                 
+            actualizarTablaProcesos(proceso2);
+            actualizarComboBox(); 
+            actualizarLista();
+            actualizarMemoriaVirtual(); 
+            
+        }
         actualizarTablaProcesos(proceso2);
         actualizarComboBox(); 
-        actualizarLista(); 
+        actualizarLista();
+        actualizarMemoriaVirtual(); 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -404,7 +438,8 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         actualizarLista();  
         actualizarComboBox(); 
         actualizarMemoriaPrincipal(); 
-     
+        actualizarMemoriaVirtual(); 
+        
     }
     
     public void iniciar() {
@@ -417,6 +452,38 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                         
                 );
         }
+    }
+    
+    public void actualizarMemoriaVirtual() {
+        DefaultTableModel memoriaVirtualDinamica = (DefaultTableModel) jTable4.getModel();
+       
+        memoriaVirtualDinamica.getDataVector().clear();
+        
+        
+        for (int i = 0; i < app.getAllProcesos().size(); i++){
+            String Numeroproceso = "Proceso " + app.getAllProcesos().get(i).getNumeroProceso(); 
+            Proceso proceso = app.getAllProcesos().get(i); 
+            
+            String paginas = "";
+            
+            for (int j = 0; j < app.getAllProcesos().get(i).getTotalPaginas().length; j++) {
+                int k = 0; 
+               for (k = 0; k < app.getMemoriaPrincipal().getMemoriaPrincipal().length; k++) {
+                   if (proceso.getTotalPaginas()[j] == app.getMemoriaPrincipal().getMemoriaPrincipal()[k] ) {
+                      k =  app.getMemoriaPrincipal().getMemoriaPrincipal().length ; 
+                       System.out.println("La pagina esta");
+                   }
+                   
+               }
+               if (k != app.getMemoriaPrincipal().getMemoriaPrincipal().length  + 1 ) {
+                       
+                       paginas = paginas + proceso.getTotalPaginas()[j].getNumeroPagina() + ", "; 
+                   }
+            }
+          memoriaVirtualDinamica.addRow(new Object[] {Numeroproceso, paginas} );
+        }
+         jTable4.setModel(memoriaVirtualDinamica);
+        
     }
     
     public static void main(String args[]) throws InterruptedException {
@@ -463,12 +530,16 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

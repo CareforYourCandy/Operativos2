@@ -146,6 +146,11 @@ public class procesoNuevo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
+
+
+
+
+
 //Encontraste al negro de whatsapp
 /*
                                                                                                     
