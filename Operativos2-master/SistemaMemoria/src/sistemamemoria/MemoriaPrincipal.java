@@ -54,25 +54,63 @@ public class MemoriaPrincipal {
                 }
             }
             if (!introducido) {
-                Pagina menosUsada = memoriaPrincipal[0]; 
+              Pagina menosProxima = memoriaPrincipal[0]; 
+                int referenciaGuardada = memoriaPrincipal[0].getProcesoPadre().proximaReferencia(menosProxima);
+                int posicion = 0; 
+                for (int j = 0; j < memoriaPrincipal.length; j++) {
+                    Pagina paginaActual = memoriaPrincipal[j];
+                    int referenciaActual = paginaActual.getProcesoPadre().proximaReferencia(paginaActual);
+                    
+                    if (referenciaGuardada < referenciaActual) {
+                        menosProxima = paginaActual;
+                        posicion = j; 
+                        referenciaGuardada = referenciaActual; 
+                    }
+                }
+                 memoriaPrincipal[posicion] = pag;
+            }
+            
+    }
+    /*
+      Pagina menosUsada = memoriaPrincipal[0]; 
                 int numeroUsos = memoriaPrincipal[0].getProcesoPadre().numeroUsos(menosUsada);
                 int posicion = 0; 
                 for (int j = 0; j < memoriaPrincipal.length; j++) {
                     Pagina paginaActual = memoriaPrincipal[j]; 
                     int numeroActual = paginaActual.getProcesoPadre().numeroUsos(paginaActual);
                     
-                    if (numeroActual <= numeroUsos) {
+                   
+                        if (numeroActual == numeroUsos) {
+                            int actualLejania = -1;
+                            int guardadaLejania = -1; 
+                            for (int k = 0; k < paginaActual.getProcesoPadre().getOrdenEjecucion().size(); k++) {
+                                actualLejania++;
+                                if (paginaActual.getProcesoPadre().getOrdenEjecucion().get(k) == paginaActual) {
+                                    k = paginaActual.getProcesoPadre().getOrdenEjecucion().size(); 
+                                }
+                            for (int l = 0; l < menosUsada.getProcesoPadre().getOrdenEjecucion().size(); l++) {
+                                guardadaLejania++;
+                                if (menosUsada.getProcesoPadre().getOrdenEjecucion().get(l) == menosUsada) {
+                                    l = menosUsada.getProcesoPadre().getOrdenEjecucion().size();
+                                }
+                            }
+                            if (actualLejania > guardadaLejania) {
+                                 menosUsada = paginaActual; 
+                                 numeroUsos = numeroActual; 
+                                posicion = j; 
+                            }
+                            }
+                        }
+                        if (numeroActual < numeroUsos) {
                         menosUsada = paginaActual; 
                         numeroUsos = numeroActual; 
                         posicion = j; 
+                    } 
                     }
-                }
                 
-                memoriaPrincipal[posicion] = pag; 
-            }
-            
-        
-    }
+                memoriaPrincipal[posicion] = pag;
+                }
+    */
     
     public void removerProceso(Proceso proceso) {
         for ( int i = 0; i < memoriaPrincipal.length; i++) {

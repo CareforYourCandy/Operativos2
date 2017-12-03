@@ -77,6 +77,18 @@ public class Proceso {
         
         
     } 
+    
+    public int proximaReferencia(Pagina pag) {
+        int proximaReferencia = 0; 
+        for ( int i = 0; i < ordenEjecucion.size(); i++) {
+            proximaReferencia = i;
+            if ( pag == ordenEjecucion.get(i)) {
+                i = ordenEjecucion.size(); 
+                
+            }
+        }
+        return proximaReferencia; 
+    }
 
     public int getNumeroProceso() {
         return numeroProceso;
