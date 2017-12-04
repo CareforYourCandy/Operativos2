@@ -175,7 +175,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             }
         });
 
-        jLabel4.setText("Memoria Virtual");
+        jLabel4.setText("Memoria Virtual (Procesos listos y en ejecución)");
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -459,7 +459,12 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
        
         memoriaVirtualDinamica.getDataVector().clear();
         
-        
+        if (app.getAllProcesos().isEmpty()) {
+            
+            memoriaVirtualDinamica.addRow(new Object[] {"", ""});
+        }
+         memoriaVirtualDinamica.getDataVector().clear();
+         
         for (int i = 0; i < app.getAllProcesos().size(); i++){
             String Numeroproceso = "Proceso " + app.getAllProcesos().get(i).getNumeroProceso(); 
             Proceso proceso = app.getAllProcesos().get(i); 

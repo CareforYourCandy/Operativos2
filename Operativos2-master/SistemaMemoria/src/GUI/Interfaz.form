@@ -342,7 +342,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Memoria Virtual"/>
+        <Property name="text" type="java.lang.String" value="Memoria Virtual (Procesos listos y en ejecuci&#xf3;n)"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane4">
