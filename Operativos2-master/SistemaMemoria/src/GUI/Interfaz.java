@@ -127,7 +127,15 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             new String [] {
                 "Marco", "Proceso", "Pagina"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable2);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -137,7 +145,15 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             new String [] {
                 "Proceso", "Número de Páginas", "Páginas Principal", "Páginas Virtual", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable3);
 
         jLabel3.setText("Proceso a Ejecutar");
@@ -172,7 +188,15 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
             new String [] {
                 "Proceso", "Paginas"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane4.setViewportView(jTable4);
 
         jLabel5.setText("Procesos");
