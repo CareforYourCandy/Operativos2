@@ -57,8 +57,6 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -132,16 +130,6 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
         ));
         jScrollPane1.setViewportView(jTable2);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Memoria Virtual"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable1);
-
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -203,9 +191,6 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jButton1)
@@ -236,8 +221,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(1, 1, 1)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,13 +279,13 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
                  
             actualizarTablaProcesos(proceso2);
             actualizarComboBox(); 
-            actualizarLista();
+          
             actualizarMemoriaVirtual(); 
             
         }
         actualizarTablaProcesos(proceso2);
         actualizarComboBox(); 
-        actualizarLista();
+        
         actualizarMemoriaVirtual(); 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -329,18 +313,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     }
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    public  void actualizarLista() {
-      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-      
-      model.getDataVector().clear(); 
-      
-      for (int i = 0; i < app.getAllProcesos().size(); i++) {
-          if (!app.getMemoriaPrincipal().tienePagina(app.getAllProcesos().get(i))) {
-              model.addRow(new Object[] { "Proceso " + app.getAllProcesos().get(i).getNumeroProceso()});
-          }
-      }
-      jTable1.setModel(model);
-    }
+   
     
     public void actualizarMemoriaPrincipal() {
         
@@ -435,7 +408,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     
     public void actualizarTodo() {
         
-        actualizarLista();  
+       
         actualizarComboBox(); 
         actualizarMemoriaPrincipal(); 
         actualizarMemoriaVirtual(); 
@@ -539,9 +512,7 @@ public static ordenEjecucion ordenejecucion = new ordenEjecucion();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
