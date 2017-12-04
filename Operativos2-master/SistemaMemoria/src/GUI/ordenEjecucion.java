@@ -129,8 +129,10 @@ public class ordenEjecucion extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (!procesoCreado.getOrdenEjecucion().isEmpty()) {
         app.removerEjecucionEspecifica(procesoCreado);
         tablaDinamica.removeRow(jTable1.getRowCount() - 1);
+        } 
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
